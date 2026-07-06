@@ -1,0 +1,47 @@
+
+interface PaymentProcessor {
+    void processPayment(double amount);
+}
+
+class PayPal {
+    void makePayment(double amount) {
+        System.out.println("Payment of Rs." + amount + " made using PayPal");
+    }
+}
+
+
+class PayPalAdapter implements PaymentProcessor {
+    PayPal paypal = new PayPal();
+
+    public void processPayment(double amount) {
+        paypal.makePayment(amount);
+    }
+}
+
+
+class GooglePay {
+    void sendMoney(double amount) {
+        System.out.println("Payment of Rs." + amount + " made using Google Pay");
+    }
+}
+
+
+class GooglePayAdapter implements PaymentProcessor {
+    GooglePay gpay = new GooglePay();
+
+    public void processPayment(double amount) {
+        gpay.sendMoney(amount);
+    }
+}
+
+
+public class Main {
+    public static void main(String[] args) {
+
+        PaymentProcessor p1 = new PayPalAdapter();
+        p1.processPayment(1000);
+
+        PaymentProcessor p2 = new GooglePayAdapter();
+        p2.processPayment(500);
+    }
+}
