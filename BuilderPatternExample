@@ -1,0 +1,52 @@
+class Computer {
+
+    private String CPU;
+    private int RAM;
+
+    private Computer(Builder builder) {
+        CPU = builder.CPU;
+        RAM = builder.RAM;
+    }
+
+    void display() {
+        System.out.println("CPU: " + CPU);
+        System.out.println("RAM: " + RAM + " GB");
+    }
+
+    static class Builder {
+        private String CPU;
+        private int RAM;
+
+        Builder setCPU(String CPU) {
+            this.CPU = CPU;
+            return this;
+        }
+
+        Builder setRAM(int RAM) {
+            this.RAM = RAM;
+            return this;
+        }
+
+        Computer build() {
+            return new Computer(this);
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        Computer c1 = new Computer.Builder()
+                .setCPU("Intel i5")
+                .setRAM(8)
+                .build();
+
+        Computer c2 = new Computer.Builder()
+                .setCPU("AMD Ryzen 7")
+                .setRAM(16)
+                .build();
+
+        c1.display();
+        c2.display();
+    }
+}
